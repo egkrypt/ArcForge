@@ -1,0 +1,37 @@
+# Training and playlist import
+
+`training_runtime.py` reports observed runtime availability; it does not estimate utilization percentages. Backend selection is `auto`, `cpu`, or `gpu`. Explicit GPU selection fails clearly when CUDA cannot run. Auto selects a verified CUDA runtime when available, otherwise CPU BLAS.
+
+The local CUDA package is installed under `.gpu-deps` using the official PyTorch CUDA 12.8 wheel index. This is separate from the upstream InfernoSaber TensorFlow CPU worker. Its pretrained weights remain frozen; only the ArcForge 44-input/96-hidden/108-class placement network is retrained. Hardware and package versions are recorded by the runtime and training report.
+
+CPU training uses vectorized NumPy/OpenBLAS, bounded worker threads and mini-batches. CUDA training uses the same dense architecture, Adam settings and matrix-only weight regularization through PyTorch on a real GPU. Both retain archive-held-out validation and the checkpoint with the lowest held-out loss. Additional training resumes only when architecture and content-hash holdout split match the prior checkpoint.
+
+Metadata and digest caches use source path, size, modification time and schema identity. Incremental import skips unchanged archive validation and copying; changed or corrupted destinations are revalidated. Placement and composition feature caches use content hashes plus explicit extraction schema versions. Cache-only refactors preserve compatible feature caches; semantic feature changes require a schema bump.
+
+The October 7 local benchmark measured a first-process scan of 605 already-cached archives / 1,767 charts at **4.280 s**, then a warm scan at **0.358 s**. This was not an uncached cold scan. The incremental importer processed 478 changed/new references in **43.594 s**, then skipped 606 unchanged references in **0.485 s**. These measurements describe this workspace/machine; source count and usable corpus count can differ. More novel audio still requires decoding and feature extraction.
+
+Cancellation is checked between archives, periodically during feature extraction, between training batches and before saving a checkpoint. Cancelled training leaves the previous model intact. Patience defaults to six epochs without improvement; best weights are retained even when later epochs worsen. Corpus-aware recommendations count usable songs, not uploaded filenames. At 605 usable archives the current recommendation is 24 epochs, at most 140,000 sampled training examples, and archive-held-out evaluation. These are starting settings, not a promise of map quality.
+
+The current local placement report contains **605 archives, 1,767 supported charts and 1,508,073 usable examples**. Its 140,000-example training sample is evaluated against 290,809 held-out examples; best validation loss is **2.2039**, versus **3.8052** for the frequency baseline. The recorded runtime is an RTX 3050 with PyTorch 2.11.0+cu128 / CUDA 12.8. Reports are local runtime data and are excluded from the source release. Prediction loss does not establish enjoyable gameplay or ranking eligibility.
+
+## Complete-song and lighting learning
+
+`engine/composition.py` uses archive-held-out ridge regression with nearest-human-phrase conditioning. It covers complete songs, including empty phrases, rather than only extracting dense repeating fragments. Targets include density ratio, movement, complexity, doubles, variety and recurrence variation; supported native object rates and actual lightshow behavior are also collected. The current report contains 261,851 phrases from 605 decoded songs, 487 training archives / 118 held-out archives and 51,976 validation phrases.
+
+Lighting learning uses 10,852,398 basic events across 1,325 distinct lightshows. It conditions event types, values, beat phase, color transitions, brightness, fades and boosts on musical context. Generated rotations and laser motion use learned native distributions where supported. Modern color/rotation/translation event-box groups and arbitrary custom events are counted and preserved, **not reconstructed as a learned shader/choreography system**. Individual held-out target metrics remain visible; some rare-object targets may not outperform their constant baseline.
+
+Whole-map and lighting models are separate from the note placement network and optional frozen Inferno/YAMNet models. Uploaded maps do not automatically fine-tune those upstream pretrained weights. Optional whole-map conditioning changes learned placement goals; valid observed musical events remain authoritative for timing. Repetition diagnostics distinguish repeated musical motifs from consecutive identical placement signatures but do not guarantee creative quality.
+
+The source archive has no training data, private models or upstream weights. Fresh users import their own human-map ZIPs and train the local network. Manual editing/import remains available before training. Optional Inferno runtime installation requires the pinned TensorFlow requirements and the four expected `fav_15` files from the documented upstream weight origin, with checksums enforced by `engine/inferno_adapter.py`; those assets are not silently obtained by setup.
+
+## BeatSaver playlists
+
+`playlists.py` accepts standard JSON `.bplist` files with `songs` entries containing a valid 40-character map hash or hexadecimal map key. It resolves versions through the official BeatSaver `/maps/hash/{hash}` or `/maps/id/{id}` API and reads the version's `downloadURL`. Only HTTPS BeatSaver domains and public DNS addresses are permitted, including redirects. Downloads and archive expansion have size/entry limits; supplied paths are never extracted or executed.
+
+Every downloaded map verifies its BeatSaver SHA-1 before being added. That hash is the UTF-8 Info.dat text followed by each referenced chart in Info.dat order, not the SHA-1 of the ZIP container. For v4 it also includes audio data and lightshow JSON. The calculation was checked against the official response for map `12162`: local Fresh! yielded `619250fcf1d3a479d53469b9250837391ae449ea`, matching BeatSaver.
+
+The hashing behavior follows the MIT-licensed SongCore implementation at `source/SongCore/Utilities/Hashing.cs`, examined from https://github.com/Kylemc1413/SongCore on 2026-10-03. Its source snapshot and full MIT license are in `integrations/beatsaver/SongCore-master/`. The Python implementation independently expresses the hashing specification, uses ZIP streams and adds path/CRC checks. Each imported ZIP gets a `.source.json` record containing the verified map hash, download source and complete ZIP SHA-256.
+
+Already-present maps and declared AI maps are skipped. Maps without usable supported Standard examples are rejected from this training corpus. Native v2/v3 charts and indexed v4 gameplay are decoded into the same training representation; v4 audio timing and referenced lightshows are resolved before feature extraction. Hash verification establishes downloaded content identity, independently of whether its charts are usable training examples. A cancelled import keeps completed verified downloads, removes its active temporary file, and can safely resume by hash.
+
+Primary references: [BeatSaver API schema](https://api.beatsaver.com/docs/swagger.json), [SongCore hashing source](https://github.com/Kylemc1413/SongCore/blob/master/source/SongCore/Utilities/Hashing.cs), [official PyTorch installation guide](https://pytorch.org/get-started/locally/).

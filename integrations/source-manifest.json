@@ -1,0 +1,76 @@
+{
+  "arcviewer": {
+    "sourceVersion": "v0.8.1-beta",
+    "webProductVersion": "0.8.1",
+    "sourceUrl": "https://github.com/AllPoland/ArcViewer/archive/refs/tags/v0.8.1-beta.zip",
+    "webAssetsOrigin": "https://allpoland.github.io/ArcViewer/",
+    "license": "GPL-3.0",
+    "unity": "6000.0.67f1"
+  },
+  "chromapper": {
+    "sourceVersion": "0.13.892",
+    "sourceUrl": "https://github.com/Caeden117/ChroMapper/archive/refs/tags/0.13.892.zip",
+    "license": "GPL-2.0",
+    "unity": "2021.3.45f1"
+  },
+  "downloadHashes": {
+    "ArcViewer-v0.8.1-beta.zip": "42efe5eb64fbea079ea57fbe240b32f55dee91e2610dd6f021eee66c8dee0f0c",
+    "ChroMapper-0.13.892.zip": "4d9cf03d2e1dc6fd9b960787534e66560f7bde060de299bc39f0f1ecaaa65be4"
+  },
+  "viewerAssetHashes": {
+    "ArcViewer.data": {
+      "sha256": "519fa75d48f8b62c05eab2e1d040974387680b13227dc1b9834c4ab1274e591c",
+      "bytes": 26034190
+    },
+    "ArcViewer.framework.js": {
+      "sha256": "388c046b76ea0d6545f304bfb8eb539079b52e991f6039c05d2f2a2d97cd8324",
+      "bytes": 488893
+    },
+    "ArcViewer.loader.js": {
+      "sha256": "2769eb0812302c6b034f7cacadf203f3d69469ab7fba7bfc1aae29953666fcbb",
+      "bytes": 26454
+    },
+    "ArcViewer.wasm": {
+      "sha256": "e2a52b226c41db8301c17ca1bb9128cb819228afb6369fdcf18d841de1e49092",
+      "bytes": 53532096
+    }
+  },
+  "inferno": {
+    "sourceVersion": "v1.7.1",
+    "sourceUrl": "https://github.com/fred-brenner/InfernoSaber---BeatSaber-Automapper/archive/refs/tags/v1.7.1.zip",
+    "license": "MIT",
+    "weightsOrigin": "https://huggingface.co/BierHerr/InfernoSaber",
+    "weightsVariant": "fav_15",
+    "weightSha256": {
+      "tf_model_enc_16bneck_5_5__22_3.h5": "4270e16af9206cd00f28215c5a04c76384e1e3fdf0736c86b87d3e8c12cc6d0f",
+      "tf_model_mapper_2-12_5_5__22_6.h5": "afb5512fb2a63c36909c23a1eb5f3b769c0a9d41b6f2692a52079f4e19fda103",
+      "notes_class_dict.pkl": "02f83ebecd3fa018e2950daa8d6dc986eb1e590b3b9e826699e37fed5ec527de",
+      "onehot_encoder_beats.pkl": "45bce9a234dc50e4acaa13c8c98a2f022271644de05a8ba1e49109bddb626432"
+    },
+    "upstreamWeightsModified": false
+  },
+  "recognition": {
+    "model": "Official pretrained YAMNet",
+    "architectureSource": "https://github.com/tensorflow/models/tree/master/research/audioset/yamnet",
+    "license": "Apache-2.0",
+    "weightsUrl": "https://storage.googleapis.com/audioset/yamnet.h5",
+    "weightSha256": "13c3308955bbfaef262f175ac9c40e47b134573a93984f009220dd7cc12a1744",
+    "weightBytes": 15296092,
+    "weightsBundled": false,
+    "repositoryDownloadedFor13": false,
+    "audioUploaded": false
+  },
+  "publicRelease": {
+    "version": "1.3.0",
+    "date": "2026-10-07",
+    "selection": "tools/package_source.py explicit whitelist",
+    "userContentIncluded": false,
+    "runtimeWeightsIncluded": false,
+    "hostedArcViewerBuildIncluded": false,
+    "hostedBuildCorrespondingSourceVerified": false,
+    "chroMapperReferenceFiles": [
+      "Assets/__Scripts/Beatmap/Helper/SpawnParameterHelper.cs",
+      "Assets/__Scripts/MapEditor/UI/MirrorSelection.cs"
+    ]
+  }
+}

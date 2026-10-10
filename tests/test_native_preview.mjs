@@ -1,0 +1,38 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {createRequire} from 'node:module';
+const require=createRequire(import.meta.url),ts=require('../frontend/node_modules/typescript');
+const source=fs.readFileSync('frontend/src/nativePreview.ts','utf8');
+const compiled=ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText;
+const {arcViewerLimitations,createNativeNjsSampler,createLaneRotationSampler,rotateLanePoint,createLocalBpmSampler,nativeJumpParameters}=await import(`data:text/javascript;base64,${Buffer.from(compiled).toString('base64')}`);
+const clock={seconds:b=>b/2};
+const chart={njsEvents:[{b:0,d:0,p:0,e:0},{b:4,d:2,p:0,e:6},{b:8,d:99,p:1,e:0},{b:12,d:-2,p:0,e:0}]};
+const njs=createNativeNjsSampler(chart,clock,20);
+assert.equal(njs.speedAt(-1),20);assert.equal(njs.speedAt(0),20);
+assert.equal(njs.speedAt(1),21);assert.equal(njs.speedAt(2),22);
+assert.equal(njs.speedAt(3),22);assert.equal(njs.speedAt(4),22); // p=1 ignores d, holds preceding value.
+assert.equal(njs.speedAt(5),20);assert.equal(njs.speedAt(6),18);
+assert.equal(njs.speedAt(1),21); // Rewind is deterministic; no leaked runtime state.
+assert.deepEqual(njs.warnings,[]);
+const quadratic=createNativeNjsSampler({njsEvents:[{b:4,d:4,p:0,e:1}]},clock,20);
+assert.equal(quadratic.speedAt(1),21);
+const unknown=createNativeNjsSampler({njsEvents:[{b:4,d:4,p:0,e:100}]},clock,20);
+assert.equal(unknown.speedAt(1),20);assert.equal(unknown.speedAt(2),24);assert.equal(unknown.warnings.length,1);
+const faster=nativeJumpParameters(20,24,22);assert.ok(Math.abs(faster.jumpDistance-26.4)<1e-9);assert.ok(Math.abs(faster.reactionSeconds-.6)<1e-9);
+assert.deepEqual(nativeJumpParameters(20,24,18),{jumpDistance:24,reactionSeconds:2/3});
+const lane=createLaneRotationSampler({rotationEvents:[{b:4,e:1,r:30},{b:4,e:0,r:15},{b:8,e:0,r:-15}]});
+assert.equal(lane({b:3}),0);assert.equal(lane({b:4}),15);assert.equal(lane({b:4.001}),45);
+assert.equal(lane({b:8}),30);assert.equal(lane({b:5,r:0}),0);assert.equal(lane({b:5,r:90}),90);
+assert.equal(lane({b:5,tb:10,hr:15,tr:60}),15);assert.equal(lane({b:5,tb:10,hr:15,tr:60},'tail'),60);
+const rotated=rotateLanePoint([0,1,-10],90);assert.ok(Math.abs(rotated[0]-10)<1e-9);assert.equal(rotated[1],1);assert.ok(Math.abs(rotated[2])<1e-9);
+const tempo=createLocalBpmSampler({bpmEvents:[{b:4,m:240},{b:8,m:60}]},120,{seconds:b=>b<=4?b/2:b<=8?2+(b-4)/4:3+(b-8)});
+assert.equal(tempo(1.9),120);assert.equal(tempo(2),240);assert.equal(tempo(3),60);assert.equal(tempo(.1),120);
+assert.deepEqual(arcViewerLimitations({colorNotes:[],customData:{}}),[]);
+assert.equal(arcViewerLimitations(chart)[0],'native V4.1 NJS events');
+assert.ok(arcViewerLimitations({colorNotes:[{r:45}]}).includes('per-object lane rotations'));
+assert.ok(arcViewerLimitations({sliders:[{hr:0,tr:90}]}).includes('independent arc/chain lane rotations'));
+assert.ok(arcViewerLimitations({sliders:[{c:1,_v4TailColor:0}]}).includes('independent arc tail colors'));
+assert.deepEqual(arcViewerLimitations({sliders:[{c:0,_v4TailColor:0}]}),[]);
+assert.ok(arcViewerLimitations({customData:{nested:[{_v4Easing:6}]}}).includes('V4-only metadata'));
+assert.deepEqual(arcViewerLimitations({_v4Easing:0,_v4TailColor:0,_v4Extra:{},_v4Empty:[]}),[]);
+console.log('Native preview: NJS semantics/easing/rewind, reading margin, local tempo, lane/end-point yaw and V3 downgrade gates passed.');

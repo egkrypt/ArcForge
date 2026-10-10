@@ -1,0 +1,88 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="SongCore.csproj.user" Condition="Exists('SongCore.csproj.user')" />
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+<!--    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>-->
+    <EnableFrameworkPathOverride>true</EnableFrameworkPathOverride>
+    <FrameworkPathOverride>$(BeatSaberDir)\Beat Saber_Data\Managed</FrameworkPathOverride>
+<!--    <NoStdLib>true</NoStdLib>-->
+<!--    <MarkPackageReferencesAsExternallyResolved>false</MarkPackageReferencesAsExternallyResolved>-->
+<!--    <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>-->
+<!--    <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BeatSaberModdingTools.Tasks" Version="2.0.0-beta7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>$(BeatSaberDir)\Libs\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BeatmapCore" />
+    <Reference Include="BeatSaber.ViewSystem" />
+    <Reference Include="BGLib.AppFlow" />
+    <Reference Include="BGLib.JsonExtension" />
+    <Reference Include="BGLib.Polyglot" />
+    <Reference Include="BGLib.UnityExtension" />
+    <Reference Include="BSML">
+      <HintPath>$(BeatSaberDir)\Plugins\BSML.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Colors" />
+    <Reference Include="DataModels" Publicize="true" />
+    <Reference Include="GameplayCore" />
+    <Reference Include="HMLib" Publicize="true" />
+    <Reference Include="HMUI" />
+    <Reference Include="Interactable" />
+    <Reference Include="IPA.Loader">
+      <HintPath>$(BeatSaberDir)\Beat Saber_Data\Managed\IPA.Loader.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Main" Publicize="true" />
+    <Reference Include="MediaLoader" />
+    <Reference Include="Menu.ColorSettings" />
+    <Reference Include="MonoMod.Utils">
+      <HintPath>$(BeatSaberDir)\Libs\MonoMod.Utils.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="netstandard" />
+    <Reference Include="Newtonsoft.Json" />
+    <Reference Include="SegmentedControl" Publicize="true" />
+    <Reference Include="SiraUtil">
+      <HintPath>$(BeatSaberDir)\Plugins\SiraUtil.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Tweening" />
+    <Reference Include="Unity.TextMeshPro" />
+    <Reference Include="UnityEngine" />
+    <Reference Include="UnityEngine.CoreModule" />
+    <Reference Include="UnityEngine.ImageConversionModule" />
+    <Reference Include="UnityEngine.InputLegacyModule" />
+    <Reference Include="UnityEngine.JSONSerializeModule" />
+    <Reference Include="UnityEngine.UI" />
+    <Reference Include="UnityEngine.UIModule" />
+    <Reference Include="Zenject" Publicize="true" />
+    <Reference Include="Zenject-usage" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Data\folders.xml" />
+    <EmbeddedResource Include="Icons\*.png" />
+    <EmbeddedResource Include="UI\*.bsml" />
+  </ItemGroup>
+
+</Project>

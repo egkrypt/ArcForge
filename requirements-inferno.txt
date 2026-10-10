@@ -1,0 +1,8 @@
+tensorflow==2.16.1
+tf-keras==2.16.0
+keras-tcn==3.5.6
+# TensorFlow 2.16 imports distutils, supplied by setuptools on Python 3.12.
+setuptools==84.0.0
+# The hash-verified upstream one-hot encoder is a scikit-learn pickle.
+scikit-learn==1.6.1; python_version < '3.11'
+scikit-learn==1.9.1; python_version >= '3.11'

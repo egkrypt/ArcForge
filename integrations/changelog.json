@@ -1,0 +1,102 @@
+{
+  "releases": [
+    {
+      "version": "1.3.0",
+      "date": "2026-10-10",
+      "title": "Musical planning, engine traceability and genuine native V4",
+      "changes": [
+        "Regional Mapping Controls extend the existing timeline with inherited/target/range NPS, local styles and goals, Auto/Full Mix/weighted Custom Sources, strict source boundaries and optional edge fades. Generation, analysis caches, saved level settings and boundary-aware continuation consume the same region contract; reports expose measured regional NPS and missing-source evidence.",
+        "ArcAudio 3.0 Deep performs four times as many overlapping recognition views, uses available CPU threads and adaptive CUDA batches, and overlaps useful CPU source-feature analysis with GPU inference. Balanced and existing projects remain compatible; measured hardware, timings and cache origin are shown without claiming perfect instrument recognition.",
+        "Sparse-chart hotfix reproduces the 26-note Expert+ failure as severe attention filtering, not an NJS/NPS mix-up. Long, active high-density requests that reject nearly every attack now stop before placement with actual rejection counts; sparse excerpts, guided regions and continuation are not judged by low note count alone.",
+        "Attention controls explain strict importance thresholds and density ceilings, provide explicit Reset attention defaults, and distinguish requested NPS and measured average/peak NPS from approach-speed NJS. Settings are never silently relaxed to fill a quota.",
+        "Optional Inferno startup processes app-local dependency hooks and Python 3.12 setuptools compatibility; Setup -Inferno installs pinned CPU requirements. Failed runtime checks invalidate stale verification, and tiny nonzero placement probabilities retain their relative evidence.",
+        "Recognition fusion preserves unrelated overlapping source evidence instead of suppressing the whole instrumental mix when one sound family is recognized. Inspector instrument hypotheses expose piano, guitar and plucked strings separately from melody/lead roles without claiming verified transcription.",
+        "Quality audit traces audio evidence through section planning, opportunity scheduling, hand assignment, lighting and export. The critic measures actual-versus-planned NPS, recovery limits, color balance and relative-motion repetition; no overall human-likeness score is invented.",
+        "Audio and placement engine selections remain separate and report their effective route. Explicit unavailable InfernoSaber selection fails clearly; Hybrid/Auto fallback states why it used Local. Recognition provenance reaches generated notes.",
+        "Harmonic/percussive analysis preserves overlapping pitched and rhythmic evidence. Classifier uncertainty no longer erases useful DSP evidence; settings expose rejection causes. Tempo analysis distinguishes established meter from subdivisions and supports evidenced acceleration/deceleration.",
+        "High-BPM scheduling retains supported fast accents, assigns feasible opportunities across both hands, bounds melodic color ownership and conditions movement on style/profile. Shared section plans and attention drive differentiated lighting styles.",
+        "Observed foreground accents can receive learned two-hand emphasis without inventing timestamps. Doubles consume two note-budget units and must leave both hands time for the next attack; quiet vocals, lower difficulties and One Saber keep appropriate space.",
+        "Attention and whole-map composition now share one active-phrase budget instead of attenuating density twice. Exact phrase boundaries retain their opening attacks, and repeated musical motifs keep shared identities across separate phrase IDs for recognizable variation.",
+        "Native V4 import/export/training uses indexed gameplay, split lightshows, shared sample-based AudioData, measured LUFS and V4.1 NJS preservation. Native metadata and original files survive roundtrips; unsupported V3 downgrades fail instead of losing semantics.",
+        "Levels combines collection and creation. Playtest, Analytics, Details and project ArcAudio live inside Studio; standalone ArcAudio remains available. Project analysis settings no longer reset charts or creation defaults.",
+        "Optional ArcAudio 3.0 executes official pretrained YAMNet locally on CPU/CUDA. Source classification feeds attention rather than inventing note timestamps; uncertain music remains explicit unknown evidence instead of becoming drums. Legacy remains the default.",
+        "Tempo-aware active-phrase NPS, source competition, background suppression and bounded compatible legacy evidence improve inspectable event selection. Reports explain musical-evidence and physical-spacing limits.",
+        "Incremental reference import skips unchanged archives; metadata/digest/feature caches retain revision invalidation. Whole-song learning includes empty phrases, density, movement, complexity and motif variation. Lighting learning uses actual human event types, values, colors, phases, brightness and boosts.",
+        "Beat grid, Light grid and Mods panels are independently visible. The palette starts collapsed, snap accepts fractions/decimals, and paused notes/ghosts remain anchored to the edit plane.",
+        "Light grid edits native cues, Chroma colors/light IDs, rings/lasers, boosts and modern event-box JSON. Mod tools expose object transforms, track/path keyframes, environment geometry, BPM ramps, Vivify lifecycle metadata and review-before-apply scripts with undo.",
+        "Unsaved native draft ZIPs feed installed ArcViewer without saving. Optional idle refresh, live browser Mod preview and retained Legacy 3D provide distinct preview choices. Missing Unity builds use browser fallback.",
+        "Generated lighting balances red and blue banks, rotates accent rings/lasers and supports bounded Noodle approach animations that settle before the hit plane. Framework dependencies and visual requirements are separated; Synapse is documented as a network plugin.",
+        "Auto-open generation, optional audio retention, permanent deletion/trash purge and guarded local restart/stop are Settings options. Modern accessible switches/sliders, themes and reduced-motion animations improve editing.",
+        "Public source packaging uses an explicit private-data-free whitelist, complete frontend source/licenses, reproducible file hashes, portable app-local Python setup and fixture-only CI checks. Launch avoids duplicate services; Stop identifies the local service and uses its guarded graceful endpoint without killing a recorded PID. The local API validates loopback Host headers on reads and writes."
+      ],
+      "limitations": [
+        "Real-output comparisons and synthetic regressions demonstrate specific timing/density/style behavior; they do not establish universally better musical taste, calibrated instrument accuracy or human-level authorship.",
+        "Native V4-only NJS/rotation semantics require compatible game/mod/viewer versions. Older ArcViewer previews use a V3-compatible snapshot and refuse unsupported downgrades; schemas alone do not prove Unity runtime behavior.",
+        "YAMNet is a general sound classifier, not stem separation, word/syllable transcription or a calibrated instrument-accuracy score. Dense mixes often remain unknown-instrument evidence; v3 is optional and does not universally outperform Legacy.",
+        "Requested NPS is an active-phrase goal, not a constant whole-song quota. Static motion and attack-distance checks do not establish comfort, musical quality or ranking eligibility.",
+        "Browser mod preview approximates supported JSON properties. Compiled Vivify meshes/shaders/post-processing and arbitrary Unity choreography require game-side testing; modern lighting filter semantics are preserved/editable rather than fully learned.",
+        "The source archive omits songs, corpus, private models, dependencies and installed weights. It also omits the hosted ArcViewer WASM/data because exact corresponding build source is not proven. Its retained source tag is a separate reference project with prebuilt DLL/SO plugins excluded; rebuilding requires restoring those dependencies."
+      ]
+    },
+    {
+      "version": "1.2.0",
+      "date": "2026-10-04",
+      "title": "Musical attention and guided AI continuation",
+      "changes": [
+        "Optional ArcAudio 2.0 separates temporal source evidence from competing attention, context, confidence and important-event selection. Off/Legacy preserve the existing candidate pipeline; Hybrid retains compatible rhythmic evidence within the attention policy.",
+        "ArcAudio debugging shares audio playback and displays sources, selected/rejected attacks, context, importance, density, confidence and phrase boundaries. High-level controls and settings-aware caches make tuning inspectable.",
+        "Optional timeline mapping regions support movement, resizing, duplication, combined philosophies and explicit inherited goal overrides. Musical evidence remains authoritative for note timing.",
+        "Let AI Continue studies both sides of multiple selected gaps and creates a separate candidate. Fill protects authored content; Accept, Regenerate, Discard and revision-aware Undo keep changes reviewable.",
+        "Manual draft checks flag possible repeated-direction cuts, short recovery and geometry risks without saving or automatically fixing notes. Human attention training-evidence export retains ambiguity and song offsets.",
+        "Full-map learning adds audio-conditioned phrase density, movement, complexity, recurrence variation and actual lighting-event behavior. Supported human basic lights, fades, brightness and boosts guide new music-triggered effects; learned structure is optional."
+      ],
+      "limitations": [
+        "Mixed-audio instrument labels are uncertain DSP proxies, not verified separated stems. Confidence measures evidence strength rather than benchmark accuracy.",
+        "Controlled attention tests do not establish real vocal/piano recognition accuracy. Verse/chorus semantics and lyric transcription are not claimed.",
+        "Learned whole-map conditioning is statistical musical structure, not unrestricted planning or a guarantee of non-repetition. V3 event-box and custom shader choreography are counted rather than reconstructed.",
+        "Static boundary and draft checks cannot certify headset comfort, ranking eligibility or musical taste."
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "date": "2026-10-03",
+      "title": "Music, motion and a faster manual workflow",
+      "changes": [
+        "Music analysis separates rhythmic evidence from loudness: multiband transients, harmonic activity, pauses, tempo evidence, musical sections and recurring motifs guide generation. Actual decoded stereo energy and correlation are measured; balance supplies a bounded spatial placement preference.",
+        "Dynamic density gives quieter passages space and develops builds and drops. Each native difficulty is generated independently with physical and reading constraints.",
+        "Mapping philosophies and musicality, technique, movement, variation, contrast and stamina goals condition learned placements. Instrument and section labels are explicitly estimates.",
+        "Playtest and Analytics expose actual NPS, reading windows, motion estimates and timestamped findings. Current-chart note/lighting distances to detected accents and distinct four-beat signatures include clickable definitions. Section tools regenerate, vary, soften or repair selected phrases.",
+        "Direct grid placement includes hover ghosts, QWE/ASD/ZXC cut directions, inverse cuts, hand switching, Ctrl-wheel zoom, adjustable wheel time travel and a waveform beside the beat grid.",
+        "Player camera keeps red on the left and blue on the right. ArcViewer provides a shared placement overlay with explicit save-and-reload. Studio exposes actual WebGL renderer information and drawing quality.",
+        "BeatSaver playlist import verifies chart hashes, stores human-made ZIPs in the reference folder and trains the local model. Corpus-based epoch recommendations and CPU/CUDA runtime controls are available.",
+        "Dashboard, AI Studio, Playtest, Analytics, Map Details, Documentation and Changelog expand the workspace. Library actions include studio, Explorer, duplicate, rename and recoverable deletion.",
+        "AI or From Scratch is selected before creation. Themes, accent colors, interface density, mapping profiles and local score summaries are customizable.",
+        "New saves preserve revisions. Restore, object-count comparison and time-range merging keep earlier work available.",
+        "AI Studio displays an estimated four-beat bar phase from repeated low/tonal accents, with ambiguity handling and an uncalibrated accent margin. This is evidence for manual review and does not automatically shift the grid."
+      ],
+      "limitations": [
+        "Mixed-audio instrument roles are spectral proxies, not perfect source separation or vocal transcription.",
+        "Readability and physical diagnostics use simplified geometry and thresholds; comfort and ranking eligibility require human review.",
+        "CUDA training requires the installed supported runtime and GPU. Upstream Inferno remains a separate frozen TensorFlow CPU worker.",
+        "ArcViewer plays saved exports; its Unity runtime does not accept live unsaved chart changes and does not render all advanced mod effects.",
+        "Bar-phase estimation assumes four beats per bar and does not verify musical meter. Stereo balance measures decoded channel energy, not separated instrument positions. Attack-distance and pattern-signature metrics do not prove musical quality."
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-10-02",
+      "title": "The local creation studio",
+      "changes": [
+        "Introduced real InfernoSaber inference and audio-conditioned local neural adaptation trained on human chart ZIPs.",
+        "Added FFmpeg audio conversion, BPM and beat estimates, five game modes, named native difficulty slots and the creation wizard.",
+        "Added note, wall, bomb, arc, chain, lighting and rotation editing, undo/redo, persistent projects and native ZIP export.",
+        "Integrated the ArcViewer environment player and ChroMapper-derived jump and mirroring calculations.",
+        "Added Chroma, Noodle Extensions, precision Mapping Extensions and imported Vivify bundles with game-side dependencies."
+      ],
+      "limitations": [
+        "The initial mapper used loudness-driven density and limited phrase contrast; 1.1 replaces that selection logic.",
+        "The upstream neural network was frozen; uploads trained the local adaptation model."
+      ]
+    }
+  ]
+}

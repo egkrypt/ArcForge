@@ -1,0 +1,452 @@
+[
+  {
+    "id": "DefaultEnvironment",
+    "name": "Default",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": true,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "OriginsEnvironment",
+    "name": "Origins",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": true,
+    "arcViewerScene": "OriginsEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "TriangleEnvironment",
+    "name": "Triangle",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": true,
+    "arcViewerScene": "TriangleEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "NiceEnvironment",
+    "name": "Nice",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": true,
+    "arcViewerScene": "NiceEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "BigMirrorEnvironment",
+    "name": "Big Mirror",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": true,
+    "arcViewerScene": "BigMirrorEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "DragonsEnvironment",
+    "name": "Dragons",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": true,
+    "arcViewerScene": "DragonsEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "KDAEnvironment",
+    "name": "K/DA",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": true,
+    "arcViewerScene": "KDAEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "MonstercatEnvironment",
+    "name": "Monstercat",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": true,
+    "arcViewerScene": "MonstercatEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "CrabRaveEnvironment",
+    "name": "Crab Rave",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": true,
+    "arcViewerScene": "MonstercatEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "PanicEnvironment",
+    "name": "Panic! At The Disco",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": true,
+    "arcViewerScene": "PanicEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "RocketEnvironment",
+    "name": "Rocket League",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "GreenDayEnvironment",
+    "name": "Green Day",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "GreenDayGrenadeEnvironment",
+    "name": "Green Day Grenade",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "TimbalandEnvironment",
+    "name": "Timbaland",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": true,
+    "arcViewerScene": "TimbalandEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "FitBeatEnvironment",
+    "name": "FitBeat",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": true,
+    "arcViewerScene": "FitBeatEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "LinkinParkEnvironment",
+    "name": "Linkin Park",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": true,
+    "arcViewerScene": "LinkinParkEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "BTSEnvironment",
+    "name": "BTS",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "KaleidoscopeEnvironment",
+    "name": "Kaleidoscope",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": true,
+    "arcViewerScene": "KaleidoscopeEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "InterscopeEnvironment",
+    "name": "Interscope",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "SkrillexEnvironment",
+    "name": "Skrillex",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "BillieEnvironment",
+    "name": "Billie",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "HalloweenEnvironment",
+    "name": "Spooky",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "GagaEnvironment",
+    "name": "Gaga",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "WeaveEnvironment",
+    "name": "Weave",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "PyroEnvironment",
+    "name": "Pyro",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "EDMEnvironment",
+    "name": "EDM",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "TheSecondEnvironment",
+    "name": "The Second",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "LizzoEnvironment",
+    "name": "Lizzo",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "TheWeekndEnvironment",
+    "name": "The Weeknd",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "RockMixtapeEnvironment",
+    "name": "Rock Mixtape",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "Dragons2Environment",
+    "name": "Dragons2",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "Panic2Environment",
+    "name": "Panic2",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "QueenEnvironment",
+    "name": "Queen",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "LinkinPark2Environment",
+    "name": "Linkin Park2",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "TheRollingStonesEnvironment",
+    "name": "The Rolling Stones",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "LatticeEnvironment",
+    "name": "Lattice",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "DaftPunkEnvironment",
+    "name": "Daft Punk",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "HipHopEnvironment",
+    "name": "Hip Hop",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "ColliderEnvironment",
+    "name": "Collider",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "BritneyEnvironment",
+    "name": "Britney",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "Monstercat2Environment",
+    "name": "Monstercat2",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "MetallicaEnvironment",
+    "name": "Metallica",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "GridEnvironment",
+    "name": "Grid",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "ColdplayEnvironment",
+    "name": "Coldplay",
+    "modelVersion": "V3",
+    "lightingVersion": 3,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": false
+  },
+  {
+    "id": "GlassDesertEnvironment",
+    "name": "Glass Desert",
+    "modelVersion": "V2",
+    "lightingVersion": 2,
+    "arcViewerSupported": false,
+    "arcViewerScene": "DefaultEnvironment",
+    "nativePreview": "procedural",
+    "allDirections": true
+  }
+]

@@ -1,0 +1,1 @@
+{"fastapi":"0.142.2","uvicorn":"0.54.0","python-multipart":"0.0.32","httpx":"0.28.1","numpy":"1.26.4","scipy":"1.14.1","pillow":"12.0.0","imageio-ffmpeg":"0.6.0","tensorflow":"2.16.1","tf-keras":"2.16.0","keras-tcn":"3.5.6","threadpoolctl":"3.7.0","torch":"2.11.0+cu128","torch-cuda":"12.8"}
