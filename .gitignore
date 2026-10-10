@@ -1,0 +1,14 @@
+.venv/
+.deps/
+.gpu-deps/
+.server-deps/
+.install-temp/
+__pycache__/
+*.pyc
+*.tsbuildinfo
+data/
+models/
+server.*.log
+server.pid
+frontend/node_modules/
+release/
