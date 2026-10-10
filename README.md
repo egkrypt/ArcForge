@@ -1,121 +1,215 @@
 # ArcForge 1.3
 
-ngl tho this project was vibe coded with GPT 6.1 sol + My own super intelligence
+> **In short:** ArcForge is a local, open-source Beat Saber map creator that can analyze songs, generate maps using a model trained on human-made levels, edit notes and lighting, continue parts of a map with AI, and create AI-generated modded content such as Noodle Extensions and Chroma data. You can import BPLISTs to build your own training dataset without manually downloading hundreds or thousands of maps one by one. It runs locally, doesn't need an API key, and can run on fairly normal hardware.
+
+ngl tho this project was vibe coded with GPT 6.1 sol + my own super intelligence.
+
 https://media1.tenor.com/m/m3r_8NhxM9MAAAAC/cat-clapping-ai-cat-clapping.gif
 
+## What is ArcForge?
 
-ArcForge is a local Beat Saber creation studio: audio analysis, learned map generation, manual note and light editing, native ZIP export, and reviewable AI continuation. It runs without an API key. Music, projects and training stay on your computer; playlist downloads and optional model installation use the internet.
+ArcForge is a Beat Saber creation studio I'm working on to see how far AI-generated maps can go, especially when the model learns from actual human-made maps, including ranked ones. The goal isn't just to put notes on a beat. I want the maps to feel more like someone actually mapped the song instead of the usual obvious AI-generated patterns.
 
-The existing installation opens with **Launch ArcForge.cmd** or at [127.0.0.1:8769](http://127.0.0.1:8769). Version 1.3 keeps the previous generator and editor, and adds optional **ArcAudio 3.0** classification to the ArcAudio 2.0 attention system. **Legacy remains the default.** The October 8–10 quality pass connects engine selection, temporal evidence, section planning, density feedback, shared lighting and native V4 formats. [Release scope and limitations](docs/RELEASE_1_3.md) distinguish measured behavior from runtime claims.
+It runs on your own computer. Your music, projects, and training data stay local. You don't need an API key or a cloud AI service. The app uses the internet only for things like downloading playlist maps or installing optional model components.
 
-## Install from the source release
+ArcForge includes:
 
-Use Python **3.10–3.12**, Node.js **22 or newer**, and npm. In PowerShell:
+- **AI map generation** using a locally trained placement model.
+- **Training from human-made maps**, including maps imported from BeatSaver playlists (`.bplist`).
+- **Audio analysis** to help find musical events, sections, rhythm, and mapping attention.
+- **Mapping regions** to give different parts of a song different styles and NPS goals.
+- **AI continuation** to fill selected gaps while taking the surrounding map into account.
+- **Manual map editing** for notes, bombs, walls, arcs, chains, BPM markers, and tempo ramps.
+- **Lighting creation and editing**, including basic events and modern light-event data.
+- **AI-generated modding data** for supported features such as Chroma and Noodle Extensions, plus tools to inspect and edit modded map data.
+- **3D and mod previews** for checking supported content before exporting.
+- **Native ZIP export** for Beat Saber map formats, including V3 and V4.
+- **Local training and model options**, with CPU support and optional NVIDIA CUDA acceleration.
+
+This is still a work in progress. Some modded features can be edited or exported even when the browser preview can't fully reproduce how they look in Beat Saber. Always test modded maps in-game.
+
+## Run ArcForge
+
+### If you already have an installed build
+
+Start it with **`Launch ArcForge.cmd`**, then open [http://127.0.0.1:8769](http://127.0.0.1:8769).
+
+### Build it from the source release
+
+You'll need:
+
+- Python **3.10–3.12**
+- Node.js **22 or newer**
+- npm
+
+Open PowerShell in the ArcForge folder and run:
 
 ```powershell
-.\"Setup ArcForge.ps1" -BuildFrontend
-.\"Launch ArcForge.ps1"
+.\Setup ArcForge.ps1 -BuildFrontend
+.\Launch ArcForge.ps1
 ```
 
-The setup script creates `.venv`, installs pinned server requirements, and builds the frontend with `npm ci`. Add `-Recognition` for optional local classifier dependencies, or `-Cuda` for a supported NVIDIA CUDA runtime. Install checksum-verified YAMNet weights from the **ArcAudio** page when needed. Audio is not sent to Google. CPU recognition works without CUDA.
+The setup script creates the Python virtual environment, installs the pinned server dependencies, and builds the frontend.
 
-The public source archive deliberately contains **no songs, projects, training corpus, private trained checkpoints or installed model weights**. Import human-made level ZIPs in Training and train the local placement model before AI generation; at least three usable archives are required. Manual creation and ZIP import do not need a trained model. The installed workspace's existing trained models are not included in the release.
+Optional components:
 
-The source archive also omits the locally installed, separately hosted ArcViewer WebGL binary: its exact corresponding build source has not been established. The upstream reference project excludes prebuilt DLL/SO plugins, so a Unity rebuild requires restoring those dependencies. The browser **Mod preview** and **Legacy 3D** remain usable. See [viewer installation and build boundaries](integrations/VIEWER_SETUP.md). No game mods are installed by setup.
+```powershell
+.\Setup ArcForge.ps1 -Recognition
+.\Setup ArcForge.ps1 -Cuda
+.\Setup ArcForge.ps1 -Inferno
+```
 
-## Create and organize levels
+Use the relevant option when you want the optional local sound classifier, supported NVIDIA CUDA runtime, or Inferno CPU inference runtime. Install checksum-verified YAMNet weights from the **ArcAudio** page when needed. Audio isn't sent to Google.
 
-**Levels** combines collection and creation. **Open level ZIP** imports V2/V3/V4 maps; **New level → AI** or **From Scratch** starts creation. Drop any audio format FFmpeg can decode; conversion produces Vorbis OGG at the original speed. Imported audio is forgotten by the next creation session unless **Remember imported audio** is enabled. Existing projects retain their audio.
+**Important:** the public source release does not include songs, projects, private training data, trained checkpoints, or installed model weights. Import human-made map ZIPs in Training and train the local placement model before using AI generation. At least three usable map archives are required. You can still create maps manually or import ZIPs without training a model.
 
-Choose five native difficulty slots with custom names, Standard / 90° / 360° / No Arrows / One Saber, a mapping philosophy and musicality, technique, movement, variety, contrast and stamina goals. Difficulties are generated independently rather than by deleting notes from the hardest map. NPS is an active-phrase target, constrained by observed musical events, pauses and human-motion guards; the report explains evidence or spacing limits. Dynamic density preserves section contrast. NJS, jump distance, BPM, grid offset and preview start can be automatic or manually overridden.
+The source release also doesn't include the separately hosted, locally installed ArcViewer WebGL binary. The browser **Mod preview** and **Legacy 3D** are still available, and no game mods are installed by setup. See [viewer installation and build boundaries](integrations/VIEWER_SETUP.md).
 
-The optional **Mapping regions** step supports movable, resizable, duplicated time ranges, primary and secondary philosophies, and inherited goal overrides. Skip it for automatic mapping. A style changes how an event is represented; it does not invent musical timing. Generated maps open automatically by default, configurable in Settings.
+## Make a map
 
-The mapper plans sections before placement, measures the generated density and reports musical-evidence or recovery limits. High-BPM observed subdivisions can support streams and bursts without halving every opportunity. Strong foreground accents can use learned two-hand emphasis at existing event times, consuming two note-budget units. Attention and learned composition share one phrase budget. Hand assignment, movement goals and repeated-motif evidence influence placement; the critic reports color balance, relative-motion repetition and actual-versus-planned NPS. These diagnostics are not calibrated human-likeness scores. [Generation audit and real comparisons](docs/GENERATION_QUALITY_AUDIT.md) document the changes.
+1. Open **Levels**.
+2. Choose **Open level ZIP** to import a map, or **New level → AI** to generate one. You can also start **From Scratch**.
+3. Drop in an audio file that FFmpeg can decode.
+4. Choose your difficulty slots, game mode, mapping goals, and other settings.
+5. Generate the map, then open it in Studio to review and edit it.
+6. Export the map as a ZIP and test it in Beat Saber.
 
-Collection menus offer Open in Studio, Open in Explorer, Duplicate, Rename and Delete. Deletion uses recoverable trash by default; permanent deletion and trash purge are explicit Settings options. Shared or active audio/assets are preserved. Playtest, Analytics, Details and level-specific ArcAudio appear inside the selected project. Analysis preferences save independently of the chart and creation defaults.
+You can set up to five difficulty slots with custom names. Available modes include Standard, 90°, 360°, No Arrows, and One Saber. Mapping goals include musicality, technique, movement, variety, contrast, and stamina.
 
-## Audio understanding and attention
+Difficulties are generated independently; ArcForge doesn't just create the hardest map and delete notes to make easier ones. NPS can be targeted dynamically, but it still depends on the musical events the audio analysis finds, pauses in the song, and movement constraints. The generation report explains when the evidence or spacing limits what it can make.
 
-ArcAudio separates **what is audible** from **what deserves mapping attention**. Time-aligned source evidence feeds contextual states, a finite competing-source attention budget, phrase analysis and redundant/background-event suppression before candidates reach the existing mapper. Confidence and energy are distinct from importance.
+You can choose NJS, jump distance, BPM, grid offset, and preview start automatically or set them yourself. **Mapping regions** are optional: add, resize, duplicate, and move time ranges, then assign different mapping styles or goals to each part of the song. Skip this step if you want ArcForge to handle the whole song automatically.
 
-- **Off / Legacy:** preserve the existing candidate pipeline.
-- **ArcAudio 2.0:** mixed-audio DSP hypotheses plus contextual attention.
-- **Hybrid:** compatible legacy rhythm evidence within the attention policy.
-- **ArcAudio 3.0:** official pretrained YAMNet sound classification plus observed attack timing, attention and conservative compatible legacy evidence.
+## Train it with human-made maps
 
-The inspector shares playback with waveform, beat grid, source lanes, selected/rejected events, context, attention, density, confidence and phrase boundaries. Controls cover musical priorities, competition, smoothing, density ceiling and supporting accents. They are stored per project when inspecting a level.
+This is one of the main reasons I'm building ArcForge: I want to see how much training on real human-made maps, including ranked maps, improves the results.
 
-Audio-analysis and note-placement engines are independent controls. Explicitly unavailable InfernoSaber selection fails; Hybrid/Auto may use Local with a reported reason. Generated reports identify the requested and effective engines. The tempo inspector separates an attack-rate hypothesis from a supported meter change, so changing percussion subdivisions do not automatically double the beat clock. [Audio evaluation](docs/AUDIO_EVALUATION.md) explains controlled tests and real-source limitations.
+In **Training**, you can upload map ZIPs, choose **Learn from these levels**, or import a BeatSaver `.bplist`. ArcForge can download the maps in a playlist for you, check their hashes, and report failed downloads. You don't need to manually install 1,000 maps in Beat Saber just to build a dataset.
 
-The October 10 sparse-chart hotfix checks severe attention-filter conflicts before placement. A strict minimum-importance threshold that discards nearly all attacks in a long, active high-density request now stops generation with the actual rejection counts instead of exporting a near-empty chart as success. Attention controls include an explicit **Reset attention defaults** action; settings are never silently relaxed. A density ceiling below 100% reduces the requested active-phrase NPS ceiling. Saved-map details distinguish requested NPS, measured average/peak NPS and **NJS**, the notes' approach speed.
+The current development corpus contains **605 archives / 1,767 charts**. That's my local development dataset, not something bundled with the public source release.
 
-YAMNet is a **521-class sound classifier**, not a stem separator, lyric transcriber or piano-note recognizer. Classification windows never become note timestamps. Unrecognized instruments remain explicitly uncertain musical evidence instead of being relabeled as drums. Dense mixes may still yield mostly unknown-instrument evidence; the optional classifier is not a claim of perfect detection or better perceptual sync. Listen and inspect the grid. [Architecture, contracts and evaluation](ARCAUDIO.md) describe the implementation.
+The model learns audio-conditioned note positions and directions. Optional whole-map learning also looks at things like phrase density, movement, complexity, doubles, pattern variation, and empty phrases. Lighting training learns from basic events, colors, timing, brightness, and boosts.
 
-## Manual studio
+Training results and prediction losses can help measure what the model is learning, but they don't prove that a map is fun, comfortable, well-synced, or genuinely human-like. That's why actual listening and VR playtesting still matter.
 
-Hover a grid cell to see a placement ghost and click to add a note. Red is left hand and blue is right hand in player orientation. The waveform sits beside the beat grid. The palette starts collapsed; Beat grid, Light grid and Mods panels can be shown independently. Snap accepts fractions or decimal beat intervals.
+ArcForge can use CPU training, and supported NVIDIA GPUs can accelerate the local placement network. You can choose Auto, CPU, or GPU where available. If a selected runtime isn't available, ArcForge should report that rather than silently pretending it used it.
 
-| Control | Action |
+## Audio analysis: ArcAudio
+
+ArcAudio tries to separate **what can be heard** from **what deserves mapping attention**. Its analysis can feed musical events, source clues, section context, and phrase information into the mapper before notes are placed.
+
+Available modes:
+
+- **Off / Legacy** — uses the existing candidate pipeline.
+- **ArcAudio 2.0** — uses mixed-audio DSP hypotheses and contextual attention.
+- **Hybrid** — combines compatible legacy rhythm evidence with the attention system.
+- **ArcAudio 3.0** — adds pretrained YAMNet sound classification alongside observed attack timing, attention, and compatible legacy evidence.
+
+You can adjust musical priorities, source competition, smoothing, density ceiling, and secondary accents. The audio inspector lets you check the waveform, beat grid, source lanes, accepted and rejected events, context, attention, density, confidence, and phrase boundaries.
+
+The audio-analysis engine and note-placement engine are separate settings. ArcForge reports which engine was requested and which one was actually used. If an engine can't run, it should explain the fallback or error.
+
+A quick note about ArcAudio 3.0: YAMNet is a 521-class sound classifier. It is **not** a stem separator, lyric transcriber, or piano-note recognizer. Its classification windows don't directly become note timestamps, and it won't identify every instrument perfectly. Dense songs can still be difficult to analyze, so check the grid and listen to the result instead of assuming detection is perfect.
+
+## Edit maps yourself
+
+The Studio editor lets you place and edit notes, bombs, walls, arcs, chains, BPM markers, and tempo ramps. The waveform is displayed beside the beat grid, and you can show or hide the Beat grid, Light grid, and Mods panels independently.
+
+Hover over a grid cell to see a placement ghost, then click to add a note. In player orientation, red is the left hand and blue is the right hand.
+
+### Default keyboard shortcuts
+
+| Shortcut | Action |
 | --- | --- |
 | Q W E / A S D / Z X C | Up-left, up, up-right / left, dot, right / down-left, down, down-right |
 | F | Invert cut direction |
 | Tab | Switch red/blue hand |
-| Wheel up / down | Forward / backward in song time |
-| Ctrl + wheel | Zoom |
-| Left / right arrow | Step on beat snap |
+| Mouse wheel | Move forward/backward in song time |
+| Ctrl + mouse wheel | Zoom |
+| Left / right arrow | Step using the beat snap |
 | Space | Play / pause |
 | Escape / Delete | Clear / remove selection |
-| Ctrl + Z / Ctrl + Y or Ctrl + Shift + Z | Undo / redo |
+| Ctrl + Z | Undo |
+| Ctrl + Y or Ctrl + Shift + Z | Redo |
 | Ctrl + S | Save |
 
-Direction keys change the placement ghost while hovering. Shortcuts & scroll includes inverse direction keys and the wheel multiplier. Notes and ghosts anchor to the edit plane while paused. Place or edit notes, bombs, walls, arcs, chains, BPM markers and tempo ramps. Light grid edits native events, light IDs, colors, fades, ring/laser motion, boosts and modern event-box JSON.
+**Check current draft** checks for things like repeated same-hand directions, insufficient recovery, geometry, visibility, and possible collisions. These checks are advisory, not a perfect human-comfort detector, and they don't change or save the map.
 
-**Check current draft** reports possible repeated same-hand directions, insufficient recovery, geometry, visibility and collision risks. Findings seek to the affected timestamp. Checks do not edit or save the map. Intentional resets may be valid; these are advisory geometric estimates.
+### Let AI Continue
 
-**Let AI Continue** fills one or several gaps using surrounding rhythm, density, movement and both hand boundaries. Fill preserves existing content; Replace and Continue are explicit alternatives. An unsaved proposal supports Accept, Regenerate, Discard and revision-aware Undo. Existing lighting and other authored objects are retained by default. A stale preview cannot silently overwrite later edits.
+Select a gap and use **Let AI Continue** to fill it based on the surrounding rhythm, density, movement, and hand patterns on both sides. You can fill gaps while keeping existing content, or explicitly choose Replace and Continue.
 
-## Preview, effects and compatibility
+You can review a proposal before accepting it, regenerate it, or discard it. Existing lighting and other authored objects are preserved by default, and a stale preview shouldn't overwrite newer edits.
 
-ArcViewer is a separate Unity WebGL player. Installed builds receive an **unsaved native ZIP snapshot** without saving the project; optional idle refresh reloads that snapshot. The live browser Mod preview reflects supported transforms immediately. Legacy 3D remains available. ArcViewer reconstructs 13 environments plus the Crab Rave alias; unsupported scenes visibly fall back to Default. All 45 catalogued environment names remain available for export.
+## Lighting, mods, and previews
 
-| Component | Editing and export | Preview boundary |
+ArcForge can create and edit lighting as well as gameplay. Its lighting generation uses learned basic-event behavior, balanced red/blue banks, accent rotations, laser movement, fades, brightness, and boosts. Gameplay and lighting share tempo and section planning, so lighting styles can change the way a section is articulated instead of only changing a label.
+
+The **Mods** tools let you inspect and edit supported modded data, including transforms, tracks, keyframes, environment geometry, asset metadata, and JSON. AI-generated modding content is intended to help create more than just vanilla note maps. The exact result depends on the mod, the data generated, and the preview/runtime support.
+
+| Mod / format | What ArcForge supports | Important limitation |
 | --- | --- | --- |
-| Chroma | Colors, IDs, native lights, rings/lasers, environment/geometry data | Supported lights and transforms; not every Unity environment enhancement |
-| Noodle Extensions | Object/track/path keyframes, positions, rotations, scale, dissolve, time | Documented properties approximated in browser; arbitrary choreography needs game testing |
-| Mapping Extensions | Precision coordinates and custom directions | Precision positions/directions; incompatible with Noodle selection |
-| Vivify | Imported bundle metadata/assets, prefab lifecycle and custom-event data | Lifecycle inspection/placeholder transforms; compiled meshes/shaders/post-processing require Beat Saber |
-| CustomJSONData / Heck | Editable custom data and framework dependencies | Frameworks, not independent visual effects |
-| Synapse | Identified as an external network plugin | Not a map-visual renderer |
+| **Chroma** | Colors, IDs, native lights, rings/lasers, environment and geometry data | The preview doesn't reproduce every Unity environment effect |
+| **Noodle Extensions** | Object and track keyframes, positions, rotations, scale, dissolve, and time data | The browser preview approximates supported properties; test complex choreography in-game |
+| **Mapping Extensions** | Precision coordinates and custom directions | Some combinations are incompatible with Noodle Extensions |
+| **Vivify** | Imported bundle metadata/assets, prefab lifecycle, and custom-event data | Compiled meshes, shaders, and post-processing need Beat Saber to render properly |
+| **CustomJSONData / Heck** | Editable custom data and framework dependencies | These are frameworks, not standalone visual effects |
+| **Synapse** | Recognition of the external network plugin | It isn't a map visual renderer |
 
-Generated lighting uses learned human basic-event behavior, balanced red/blue banks, accent rotations, laser motion, fades, brightness and boosts. Gameplay and lighting share tempo, attention and section planning. Lighting styles change articulation and intensity rather than just a label. Optional Noodle note entrances settle before the hit plane. Imported modern light boxes and arbitrary custom events are preserved and editable; their complete semantics are not learned or reconstructed.
+The browser Mod preview updates supported transforms, and Legacy 3D is available as another preview option. ArcViewer is a separate Unity WebGL player and can preview an unsaved ZIP snapshot when installed. It supports 13 environments plus the Crab Rave alias; unsupported scenes fall back to Default in ArcViewer, although all 45 catalogued environment names remain available for export.
 
-Mods exposes transforms, tracks, keyframes, environment geometry, asset metadata and JSON. Scripts use **Run → Review → Apply** with undo; treat them as local project tools, not a Unity plugin host. Vanilla, Ranked-compatible, Modded and Unrestricted targets constrain export features. Ranked-compatible is not a ranking certificate.
+For scripts in Mods, use **Run → Review → Apply** and keep the undo option in mind. These are local project tools, not a general Unity plugin host.
 
-Advanced legacy V2 mod charts support viewing and unchanged export; convert them to V3 in ChroMapper before editing their animations. **Native export format** selects V3 (default) or genuine indexed V4 gameplay with separate lightshows and shared AudioData timing. V4 import and training input are supported. Imported native metadata is retained, and unsupported V4-only downgrades fail explicitly. Native V4.1 NJS or per-object rotation support still depends on the game/viewer runtime. See [native formats and preservation rules](docs/NATIVE_FORMATS.md).
+Export targets include **Vanilla**, **Ranked-compatible**, **Modded**, and **Unrestricted**. Ranked-compatible only limits certain features; it doesn't mean a map is guaranteed to be accepted or ranked.
 
-## Learn from human maps
+## V3 and V4 support
 
-Upload ZIPs, import **Learn from these levels**, or upload a BeatSaver `.bplist`. Playlist downloads use the official API, verify map hashes, reject declared AI maps and report failures. Incremental import skips validation/copy for unchanged archives; metadata and feature caches invalidate changed content. Cancellation retains the last good model.
+ArcForge can import V2, V3, and V4 maps. In **Settings → Native export format**, choose V3 (the default) or native V4 export. V4 uses indexed gameplay data with separate lightshows and shared AudioData timing.
 
-The current development corpus contains **605 archives / 1,767 charts**. It is private local input, not bundled release data. The placement network learns audio-conditioned positions/directions; optional whole-map learning also learns phrase density, movement, complexity, doubles, recurrence variation and empty phrases. Lighting training uses actual basic events, colors, phase, brightness and boosts across complete lightshows. Whole-map conditioning is a statistical model, not unrestricted planning or copied block templates.
+Imported metadata is retained where supported. If a downgrade can't safely preserve a V4-only feature, ArcForge should report that instead of silently pretending nothing changed. Some V4.1 features, including NJS or per-object rotation behavior, still depend on the game or viewer runtime.
 
-The measured local composition run used **261,851 phrase examples**, 605 decoded songs and **10,852,398 basic lighting events**. Archive-held-out prediction losses are reported separately by target; they do not establish enjoyable gameplay. Modern box counts and custom events are recorded without claiming their choreography has been learned. Training shows actual model reports, device and recommended epochs.
+Advanced legacy V2 mod charts can be viewed and exported unchanged, but convert them to V3 in ChroMapper before editing their animations.
 
-Auto / CPU / GPU training chooses a verified runtime. Explicit GPU selection fails clearly if unavailable. CPU uses bounded numerical-library threads; CUDA accelerates the local placement network. Different phases use different resources, so low CPU or memory consumption alone does not indicate a stalled trainer. The app does not promise to combine CPU and GPU for every operation.
+## Privacy and local files
 
-Optional InfernoSaber v1.7.1 inference uses frozen upstream `fav_15` TensorFlow weights in a separate CPU process when installed. Uploads train the separate ArcForge network, not those upstream weights. The source release omits all weights. [Training, caches, playlist security and runtime boundaries](integrations/TRAINING_RUNTIME.md) contain details.
+ArcForge is designed to run locally:
 
-Use `Setup ArcForge.ps1 -Inferno` to install the optional Inferno CPU runtime. Its startup initializes app-local package hooks, including the pinned setuptools compatibility needed by TensorFlow on Python 3.12. Failed runtime checks invalidate stale success records. Inferno and Local placement consume audio-selected candidate times; a placement-engine fallback does not create missing timing candidates.
+- Music, projects, and training data stay on your computer.
+- You don't need an API key.
+- Playlist import downloads map archives through the official API.
+- Optional model components and dependencies may need an internet connection.
+- The public source archive does not include the private development corpus, songs, projects, trained checkpoints, or model weights.
+
+The app runs on loopback at port `8769`. The local server validates loopback hostnames for reads and writes.
 
 ## Development and release checks
 
-Original backend/engine code is MIT. The ChroMapper-derived frontend is GPL-2.0-only with complete frontend source and adapted original reference files. ArcViewer is a separate GPL-3.0 program. Licenses and attribution remain with each component; user music/maps are not relicensed. See [third-party notices](THIRD_PARTY_NOTICES.md), [frontend dependency licenses](docs/FRONTEND_LICENSES.md), [provenance](integrations/PROVENANCE.md) and [source manifest](integrations/source-manifest.json).
+The backend and engine code are MIT licensed. The ChroMapper-derived frontend is GPL-2.0-only, and ArcViewer is a separate GPL-3.0 program. Each component keeps its own license and attribution; your music and maps aren't relicensed by ArcForge.
 
-`server.py` serves the built frontend on loopback port 8769 and validates exact loopback hostnames for both reads and writes. React/TypeScript source is in `frontend/src`; audio/generation modules are in `engine`. `.venv`, installed dependencies, `data` and `models` are local runtime directories. Settings include themes, reduced motion, audio retention, workflow and guarded restart/stop controls.
+See [third-party notices](THIRD_PARTY_NOTICES.md), [frontend dependency licenses](docs/FRONTEND_LICENSES.md), [provenance](integrations/PROVENANCE.md), and the [source manifest](integrations/source-manifest.json).
 
-Use `python -X utf8 tools/verify_release.py` for fixture-only DSP, tempo, engine/API, continuation, lighting, native-format and storage checks; `npm run build` in `frontend`; and `python -X utf8 tools/package_source.py --audit-only` to inspect the private-data-free release whitelist. Build the deterministic source ZIP with `python -X utf8 tools/package_source.py`. Audit every archive entry/hash with `python -X utf8 tools/verify_release.py --archive release/ArcForge-1.3.0-source.zip --archive-only`. Trained-checkpoint and real-song evaluations remain separate; do not run arbitrary old example scripts against authored projects.
+Useful release checks:
 
-The [1.3 checklist](UPDATE_1_3_CHECKLIST.md), [ArcAudio checklist](ARCAUDIO_V2_CHECKLIST.md), [1.1 checklist](UPDATE_1_1_CHECKLIST.md) and in-app Changelog record scope. Static motion checks, attack-distance measurements and numerical-model agreement cannot replace listening or human VR playtesting.
+```powershell
+python -X utf8 tools/verify_release.py
+npm run build
+python -X utf8 tools/package_source.py --audit-only
+python -X utf8 tools/package_source.py
+python -X utf8 tools/verify_release.py --archive release/ArcForge-1.3.0-source.zip --archive-only
+```
 
-Optional browser checks use an installed Playwright package and Edge by default. Install test-only packages separately (for example `npm install --prefix .test-deps --no-save playwright bsmap@3.0.3 valibot`), set `ARCFORGE_PLAYWRIGHT_MODULE` to its Playwright package directory, and optionally set `ARCFORGE_BROWSER_CHANNEL`. Fixture browser checks use mocked APIs; `browser_13_live.mjs` is a read-only installed-server smoke test. For `validate_exports.mjs`, set `ARCFORGE_BSMAP_ROOT` to the installed bsmap 3.0.3 package directory and pass an isolated extracted map folder; it writes a schema report there. `validate_real_v4.py --summary PATH` accepts a locally generated benchmark summary, uses the same schema setting, and resolves Node from PATH or `ARCFORGE_NODE`. These optional packages are not app runtime dependencies.
+The repository also includes release and evaluation notes:
+
+- [Release 1.3 scope and limitations](docs/RELEASE_1_3.md)
+- [Generation quality audit](docs/GENERATION_QUALITY_AUDIT.md)
+- [Audio evaluation](docs/AUDIO_EVALUATION.md)
+- [ArcAudio architecture](ARCAUDIO.md)
+- [Training and runtime boundaries](integrations/TRAINING_RUNTIME.md)
+- [Native formats and preservation rules](docs/NATIVE_FORMATS.md)
+- [Viewer setup](integrations/VIEWER_SETUP.md)
+
+Static checks and numerical model results are useful, but they can't replace listening to maps or testing them in VR.
+
+---
+
+ArcForge is still being developed, so expect things to change. The whole point is to keep improving it, test how much human-map training actually helps, and make AI-generated Beat Saber maps that don't instantly scream "AI-generated."
