@@ -1,6 +1,3 @@
-ngl tho this project was vibe coded with GPT 6.1 sol + My own super intelligence
-https://media1.tenor.com/m/m3r_8NhxM9MAAAAC/cat-clapping-ai-cat-clapping.gif
-
 # ArcAudio 2.0 / 3.0 and guided mapping
 
 ArcAudio is an optional decision layer between the existing music analysis and hit selection. It keeps source evidence, musical attention, and physical note placement separate. Off and Legacy use the prior candidate pipeline; ArcAudio selects observed important attacks; Hybrid admits compatible legacy rhythm within the same attention policy.
