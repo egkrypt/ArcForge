@@ -3,6 +3,7 @@
 > **In short:** ArcForge is a local, open-source Beat Saber map creator that can analyze songs, generate maps using a model trained on human-made levels, edit notes and lighting, continue parts of a map with AI, and create AI-generated modded content such as Noodle Extensions and Chroma data. You can import BPLISTs to build your own training dataset without manually downloading hundreds or thousands of maps one by one. It runs locally, doesn't need an API key, and can run on fairly normal hardware.
 
 ngl tho this project was vibe coded with GPT 6.1 sol + my own super intelligence.
+If you want me to add you as a contributor. Contact me in discord g9es.
 
 https://media1.tenor.com/m/m3r_8NhxM9MAAAAC/cat-clapping-ai-cat-clapping.gif
 
