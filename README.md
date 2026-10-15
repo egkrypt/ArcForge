@@ -4,7 +4,7 @@
 
 ![AI cat clapping](https://media1.tenor.com/m/m3r_8NhxM9MAAAAC/cat-clapping-ai-cat-clapping.gif)
 
-ngl tho this project was vibe coded with GPT 6.1 sol + my own super intelligence.
+Disclaimer!! This project was made for fun. Its clearly vibe coded with GPT 6.1 sol + my own super intelligence.
 
 ## What can it do?
 
